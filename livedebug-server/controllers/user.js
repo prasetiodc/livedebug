@@ -4,6 +4,7 @@ const jwt = require('../helpers/token');
 
 class UserController {
   static register(req, res) {
+    
     let user = {
       email: req.body.email,
       password: req.body.password
@@ -26,7 +27,7 @@ class UserController {
 
   static login(req, res) {
     User
-     .findOne(req.body.email)
+     .findOne({email : req.body.email})
      .then(user => {
        if (user) {
          if (regis.checkPassword(req.body.password, user.password)) {
@@ -58,7 +59,7 @@ class UserController {
        verificationCode: req.body.verificationCode
      }, {
        $set: { isVerified: true }
-     })
+     }, {new : true})
      .then(user => {
        if(user) {
          res.status(200).json(user);

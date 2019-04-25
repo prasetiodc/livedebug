@@ -54,7 +54,7 @@ before(done => {
     .catch(err => {
       throw err
     })
-})
+}) 
 
 after(done => {
   Account
@@ -70,7 +70,6 @@ describe('Account', function() {
       let account = {
         balance: 350000
       }
-
       chai
        .request(app)
        .post('/accounts/new')
@@ -122,6 +121,7 @@ describe('Account', function() {
 
   describe('GET /accounts/:accountNumber', function() {
     it('should return status 200 and get all data reference', function(done) {
+      
       chai
        .request(app)
        .get(`/accounts/${accountNumber_1}`)
@@ -148,6 +148,8 @@ describe('Account', function() {
        .delete(`/accounts/${accountNumber_1}`)
        .set('token', token)
        .end(function(err, res) {
+         console.log(res.body);
+         
          expect(err).to.be.null;
 
          expect(res).to.have.status(200);

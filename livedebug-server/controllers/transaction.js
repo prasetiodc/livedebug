@@ -2,6 +2,8 @@ const Transaction = require('../models/transaction');
 
 class TransactionController {
   static transfer(req, res) {
+    console.log("MASUK");
+    
     Transaction.create({
       amount: req.body.amount,
       from: req.transferFromId,
@@ -19,7 +21,9 @@ class TransactionController {
       })
     })
     .then(trans => {
-      res.status('201').json(trans);
+      console.log("MASUK");
+      
+      res.status(201).json(trans);
     })
     .catch(err => {
       if (err.message) {

@@ -69,7 +69,7 @@ export default {
     $route (newVal) {
       this.isLoading = true
       this.fetchProject(newVal.params.behanceId).then(
-        _ => (this.isLoading = false)
+        _ => (this.isLoading = true)
       )
     }
   },

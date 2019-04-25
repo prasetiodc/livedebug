@@ -93,7 +93,7 @@ describe('Transactions', function() {
          accountNumber: awtianAccount,
          accountNumberTo: wikaAccount
        })
-       .end(function(err, res) {
+       .end(function(err, res) {        
          expect(err).to.be.null;
 
          expect(res).to.have.status(201);

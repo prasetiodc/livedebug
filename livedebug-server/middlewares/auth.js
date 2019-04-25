@@ -5,20 +5,24 @@ const Transaction = require('../models/transaction');
 
 module.exports = {
   authentication: function(req, res, next) {
-    let token = req.header.token;
 
-    if (token) {
+    let token = req.headers.token;
+
+    if (!token) {
       res.status(401).json({ error: 'You must login to access this endpoint' });
     } else {
       let decoded = jwt.verify(token);
+      
       User
        .findOne({
          email: decoded.email
        })
        .then(user => {
+         
          if(user) {
-           req.user = user;
-           next();
+            req.user = user;
+            console.log("di next", req.user);
+            next();
          } else {
            res.status(401).json({ err: 'User is not valid' });
          }
@@ -29,6 +33,8 @@ module.exports = {
     }
   },
   authorization: function(req, res, next) {
+    console.log("authorization");
+    
     let accountNumber = null;
 
     if (req.params.accountNumber) {

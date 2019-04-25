@@ -10,8 +10,7 @@ module.exports = {
   },
   generateNum: function(digit) {
     if(digit > 0) {
-      this.generateNum(digit - 1) + Math.floor(Math.random() * 10);
+      return Math.floor(Math.random() * 1000000);
     }
-    return '';
   }
 }

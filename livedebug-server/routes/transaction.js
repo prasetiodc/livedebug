@@ -5,6 +5,6 @@ const { authentication, authorization, authForTransfer } = require('../middlewar
 
 router.use(authentication);
 
-router.post('/', authorization, authForTransfer, transactionController.transfer);
+router.post('/',authorization, authForTransfer, transactionController.transfer);
 
 module.exports = router
